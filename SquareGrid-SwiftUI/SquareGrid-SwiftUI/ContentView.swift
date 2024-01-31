@@ -17,7 +17,7 @@ struct ContentView: View {
 
     var gridItems: [GridItemViewModel] {
         return (1 ..< totalItems).map { i in
-            GridItemViewModel(id: i, imageCount: (i % 3 == 0) ? 1 : 2) // Example condition for a single image row
+            GridItemViewModel(id: i, imageCount: (i % 3 == 0) ? 1 : 2) // Updated condition for a single image row
         }
     }
 
@@ -131,24 +131,15 @@ struct ContentView: View {
         Button(action: {
             toggleSelection(for: item.id)
         }) {
-            Text("\(item.id)")
-                .frame(width: itemSize(for: geometry.size.width), height: itemSize(for: geometry.size.width))
-                .background(Color.purple) // Add background color
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 2))
-                .overlay(
-                    selectedItems.contains(item.id) ?
-                        Image(systemName: "checkmark.circle.fill")
-                            .resizable()
-                            .foregroundColor(.blue)
-                            .frame(width: 25, height: 25)
-                            .padding(5)
-                            .background(Color.white)
-                            .clipShape(Circle())
-                            .offset(x: itemSize(for: geometry.size.width) / 2 - 20, y: -itemSize(for: geometry.size.width) / 2 + 20)
-                        : nil
-                )
-                .foregroundColor(.white) // Change font color to white
+            VStack {
+                Text("Index: \(item.id), Column: 0")
+                    .foregroundColor(.white)
+                    .padding(.top, 5)
+            }
+            .frame(width: itemSize(for: geometry.size.width), height: itemSize(for: geometry.size.width))
+            .background(selectedItems.contains(item.id) ? Color.blue : Color.purple) // Add background color
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 2))
         }
     }
 
@@ -160,24 +151,15 @@ struct ContentView: View {
                     Button(action: {
                         toggleSelection(for: item.id + index)
                     }) {
-                        Text("\(item.id + index)")
-                            .frame(width: (itemSize(for: geometry.size.width) - spacing) / 2, height: itemSize(for: geometry.size.width) / 2)
-                            .background(Color.pink) // Add background color
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 2))
-                            .overlay(
-                                selectedItems.contains(item.id + index) ?
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .resizable()
-                                        .foregroundColor(.blue)
-                                        .frame(width: 25, height: 25)
-                                        .padding(5)
-                                        .background(Color.white)
-                                        .clipShape(Circle())
-                                        .offset(x: (itemSize(for: geometry.size.width) - spacing) / 4 - 20, y: -itemSize(for: geometry.size.width) / 4 + 20)
-                                    : nil
-                            )
-                            .foregroundColor(.white) // Change font color to white
+                        VStack {
+                            Text("Index: \(item.id + index), Column: 0")
+                                .foregroundColor(.white)
+                                .padding(.top, 5)
+                        }
+                        .frame(width: (itemSize(for: geometry.size.width) - spacing) / 2, height: itemSize(for: geometry.size.width) / 2)
+                        .background(selectedItems.contains(item.id + index) ? Color.blue : Color.pink) // Add background color
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 2))
                     }
                 }
             }
@@ -187,30 +169,20 @@ struct ContentView: View {
                     Button(action: {
                         toggleSelection(for: item.id + index)
                     }) {
-                        Text("\(item.id + index)")
-                            .frame(width: (itemSize(for: geometry.size.width) - spacing) / 2, height: itemSize(for: geometry.size.width) / 2)
-                            .background(Color.pink) // Add background color
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 2))
-                            .overlay(
-                                selectedItems.contains(item.id + index) ?
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .resizable()
-                                        .foregroundColor(.blue)
-                                        .frame(width: 25, height: 25)
-                                        .padding(5)
-                                        .background(Color.white)
-                                        .clipShape(Circle())
-                                        .offset(x: (itemSize(for: geometry.size.width) - spacing) / 4 - 20, y: -itemSize(for: geometry.size.width) / 4 + 20)
-                                    : nil
-                            )
-                            .foregroundColor(.white) // Change font color to white
+                        VStack {
+                            Text("Index: \(item.id + index), Column: 0")
+                                .foregroundColor(.white)
+                                .padding(.top, 5)
+                        }
+                        .frame(width: (itemSize(for: geometry.size.width) - spacing) / 2, height: itemSize(for: geometry.size.width) / 2)
+                        .background(selectedItems.contains(item.id + index) ? Color.blue : Color.pink) // Add background color
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 2))
                     }
                 }
             }
         }
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -218,5 +190,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
 
